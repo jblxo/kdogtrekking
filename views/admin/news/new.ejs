@@ -1,0 +1,37 @@
+<% include ../../partials/header %>
+<div class="container">
+    <h1 id="formHeading">Přidat novou novinku</h1>
+    <form id="addNewForm" action="/admin/novinky" method="POST">
+        <div class="form-group">
+            <lable for="news[title]">Titulek</lable>
+            <input class="form-control" type="text" name="news[title]" placeholder="titulek">
+        </div>
+        <div class="form-group">
+            <label for="news[image]">Obrázek</label>
+            <input class='form-control' type="text" id="news[image]" name="news[image]" required placeholder="URL obrázku">
+        </div>
+        <div class='form-group'>
+            <lable for="news[description]">Popis</lable>
+            <input type='hidden' name='news[description]' id='hidden'>
+            <div id='editor'></div>
+        </div>
+                
+        <button type='submit' class="btn btn-primary" onclick="return populate()">Odeslat</button>
+    </form>
+    <a href="/admin/novinky" class="btn btn-default">Zpět</a>
+
+    <script src="/lib/trumbowyg/trumbowyg.min.js"></script>
+
+    <script>
+        $('#editor').trumbowyg();
+
+        function populate() {
+            var data = document.querySelector('#editor').innerHTML;
+
+            document.querySelector('#hidden').value = data;
+        }
+    </script>
+</div>
+</body>
+
+</html>

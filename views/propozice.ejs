@@ -1,0 +1,14 @@
+<% include ./partials/header.ejs %>
+<div class='container-full'>
+    <div class='thumbnail'>
+        <img src='<%= competition.map %>'>
+        <div class='caption'>
+            <h2 class='competition-title'><%= competition.title %></h2>
+            <p><%- competition.description %></p>
+        </div>
+    </div>
+    <a href="/novinky" class="btn btn-primary back">Zpět</a>
+</div>
+</body>
+
+</html>

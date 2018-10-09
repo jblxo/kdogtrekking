@@ -1,0 +1,289 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body > div {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-family: 'Roboto Mono', monospace;
+  padding-bottom: 4rem;
+  position: relative;
+}
+
+#nav {
+  z-index: 1;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #4d4c4c86;
+  background-color: #00788b;
+}
+
+#nav a {
+  color: #fff;
+  font-size: 0.9em;
+  padding: 15px 12px;
+}
+
+#nav div.container {
+  padding: 0 5px;
+}
+
+#nav a:hover {
+  background-color: #b0b1b2;
+}
+
+#nav .navbar-brand:hover {
+  background-color: transparent;
+}
+
+#nav .dropdown {
+  background-color: #00788b;
+}
+
+#dropdown {
+  background-color: #2f4f4f;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+  background-color: #2f4f4f;
+}
+
+#addNewForm {
+  width: 70%;
+  margin: 25px auto;
+}
+
+#formHeading {
+  text-align: center;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+.thumbnail {
+  width: 70%;
+}
+
+.thumbnail {
+  margin: 1.75em auto;
+  padding: 0;
+}
+
+#dropdown {
+  background-color: #2f4f4f;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+  background-color: #2f4f4f;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #000;
+  color: #b0b1b2;
+  font-size: 0.7em;
+  padding: 0 7rem;
+}
+
+/* footer h4 {
+    font-size: 1em;
+} */
+
+.kontakt {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+#form {
+  height: 100%;
+  background-color: #00788b;
+  float: right;
+}
+
+#form form {
+  width: 70%;
+  margin: 20px auto;
+  color: #4d4c4c86;
+  font-size: 1.2em;
+  background-color: #fff;
+  padding: 15px;
+}
+
+#form form h3 {
+  font-weight: bold;
+  color: #383838;
+}
+
+#form form div {
+  font-size: 0.6em;
+}
+
+@media screen and (max-width: 768px) {
+  #form form {
+    width: 80%;
+  }
+}
+
+#btn {
+  width: 100%;
+  margin-top: 12px;
+  background-color: #00788b;
+}
+
+#contact::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#contact {
+  background-image: url(http://img29.rajce.idnes.cz/d2902/14/14901/14901213_d075baeab2d42b1f2296b3d988b5a546/images/ANR_4415.jpg?ver=0);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  float: left;
+  color: #fff;
+  z-index: 1;
+  padding: 20px;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.item {
+  width: 100%;
+  margin-bottom: 1.2em;
+  height: 100%;
+}
+
+.item p {
+  color: #77dd77;
+}
+
+.kontaktWrap {
+  padding: 5%;
+  background: rgba(0, 0, 0, 0.3);
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 25%;
+}
+
+@media screen and (max-width: 426px) {
+  #form {
+    float: none;
+  }
+  #contact {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #contact {
+    height: 100%;
+  }
+  .kontaktWrap {
+    margin: 0 auto;
+    width: 70%;
+  }
+}
+
+.container-fluid > div {
+  height: 100%;
+}
+
+/* .fotoalbum {
+    
+} */
+
+#fototext {
+  margin-top: -20px;
+  background-color: #00788b;
+  position: relative;
+  min-height: 200px;
+  padding-top: 2em;
+  padding-bottom: 4em;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+}
+
+.container-full {
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.competition-title {
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.carousel-control {
+  padding: 25% 0;
+}
+
+.deleteForm {
+  display: inline;
+}
+
+.back {
+  margin-left: 50px;
+  margin-bottom: 25px;
+}
+
+.zaplaceno {
+  background: #90ee90;
+}
+
+.nezaplaceno {
+  background: #f23737;
+}
+
+.table-wrap {
+  border: 2px solid #b3b3b3;
+  border-radius: 12.5px;
+  padding: 7px;
+  margin: 12px 0 50px 0;
+}
+
+#noCompetition {
+  background: url('../img/sadDog.JPG');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#noCompetition > h2 {
+  margin-top: 0;
+  padding-top: 40vh;
+  color: #fff;
+}

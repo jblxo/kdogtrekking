@@ -1,0 +1,107 @@
+<% include ../../partials/admin %>
+  <div class="container-full">
+    <h1 id="formHeading">Upravit závodníka
+      <%= competitor.firstName + " " + competitor.lastName %>
+    </h1>
+    <form id="addNewForm" action='/admin/zavody/<%= competition._id %>/prihlasky/<%= competitor._id %>?_method=PUT' method='POST'>
+      <div class='form-group'>
+        <label>Jméno</label>
+        <input name='competitor[firstName]' class='form-control' type='text' value='<%= competitor.firstName %>' required>
+      </div>
+
+      <div class='form-group'>
+        <label>Příjmení</label>
+        <input name='competitor[lastName]' class='form-control' type='text' value='<%= competitor.lastName %>' required>
+      </div>
+
+      <%
+          var date = new Date(competitor.dateOfBirth);
+          var day = date.getDate();
+
+          if(day < 10) {
+            day = '0' + day;
+          }
+
+          var month = date.getMonth() + 1;
+
+           if(month < 10) { month='0' + month; }
+
+          var year = date.getFullYear();
+          var dateObject = { d: day, m: month, y: year };
+
+          var finalDate = year + '-' + month + '-' + day;
+        %>
+
+        <div class='form-group'>
+          <label>Datum narození</label>
+          <input name='competitor[dateOfBirth]' class='form-control' type='date' value='<%= finalDate %>' required>
+        </div>
+
+        <div class='form-group'>
+          <label>Jména psů</label>
+          <input name='competitor[dogName]' class='form-control' type='text' value='<%= competitor.dogName %>' required>
+        </div>
+
+        <div class='form-group'>
+          <label>Rasy psů</label>
+          <input name='competitor[dogRace]' class='form-control' type='text' value='<%= competitor.dogRace %>' required>
+        </div>
+
+        <div class='form-group'>
+          <label>Umístění</label>
+          <input name='competitor[place]' class='form-control' type='number' value='<%= competitor.place %>' required>
+        </div>
+
+        <div class='form-group'>
+          <label>Čas</label>
+          <input name='time' class='form-control' type='time' step='1' value='<%= (competitor.time.getHours()<10? "0" : "") + competitor.time.getHours() + ":" + (competitor.time.getMinutes()<10? "0" : "") + competitor.time.getMinutes()
+            + ":" + (competitor.time.getSeconds()<10? "0" : "") + competitor.time.getSeconds() %>' required>
+        </div>
+
+        <div class='form-group'>
+          Zaplaceno
+          <div class='radio'>
+            <label>
+              <% if(competitor.isRegistered == true) { %>
+                <input type="radio" name="competitor[isRegistered]" value="true" checked>
+                <% } else { %>
+                  <input type="radio" name="competitor[isRegistered]" value="true">
+                  <% } %>
+                    Ano
+            </label>
+          </div>
+
+          <div class='radio'>
+            <label>
+              <% if(competitor.isRegistered == false) { %>
+                <input type="radio" name="competitor[isRegistered]" value="false" checked>
+                <% } else { %>
+                  <input type="radio" name="competitor[isRegistered]" value="false">
+                  <% } %>
+                    Ne
+            </label>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          Kategorie
+          <% competition.categories.forEach(function(category) { %>
+            <div class="checkbox">
+              <label>
+                <% if(category == competitor.category) { %>
+                  <input type="checkbox" name="category" value="<%= category %>" checked>
+                  <% } else { %>
+                    <input type="checkbox" name="category" value="<%= category %>">
+                    <% } %>
+                      <%= category %>
+              </label>
+            </div>
+            <% }); %>
+        </div>
+
+        <button class="btn btn-primary">Odeslat</button>
+    </form>
+  </div>
+  </body>
+
+  </html>

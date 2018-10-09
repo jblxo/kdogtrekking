@@ -1,0 +1,70 @@
+<% include ../../partials/admin %>
+<div class="container-full">
+    <h1 id="formHeading">Přidat nový závod</h1>
+    <form id="addNewForm" action="/admin/zavody" method="POST">
+        <div class="form-group">
+            <lable for="competition[title]">Název</lable>
+            <input class="form-control" type="text" name="competition[title]" placeholder="nazev">
+        </div>
+        <div class="form-group">
+            <lable for="competition[location]">Místo</lable>
+            <input class="form-control" type="text" name="competition[location]" placeholder="misto">
+        </div>
+        <div class="form-group">
+            <lable for="competition[map]">Obrázek</lable>
+            <input class="form-control" type="text" name="competition[map]" placeholder="URL obrazku mapy">
+        </div>
+        <div class='form-group'>
+            Kategorie
+            <% categories.forEach(function(category) { %>
+                <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="category" value="<%= category.name %>">
+                    <%= category.name %>
+                </label>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class='form-group'>
+            Aktivita
+            <div class='radio'>
+                <label>
+                    <input type="radio" name="competition[isActive]" id="active" value="true" checked>
+                    Aktivní
+                </label>
+            </div>
+
+            <div class='radio'>
+                <label>
+                    <input type="radio" name="competition[isActive]" id="nonactive" value="false">
+                    Neaktivní
+                </label>
+            </div>
+        </div>
+        
+        <div class='form-group'>
+                <lable for="competition[description]">Popis</lable>
+                <input type='hidden' name='competition[description]' id='hidden'>
+                <div id='editor'></div>
+            </div>
+        <button type='submit' onclick='return populate()' class="btn btn-primary">Odeslat</button>
+    </form>
+    <a href="/admin/zavody" class="btn btn-default">Zpět</a>
+
+    <script src="/lib/trumbowyg/trumbowyg.min.js"></script>
+
+    <script>
+        $('#editor').trumbowyg();
+
+        function populate() {
+            var data = document.querySelector('#editor').innerHTML;
+
+            document.querySelector('#hidden').value = data;
+        }
+    </script>
+
+    </body>
+    
+    </html>
+

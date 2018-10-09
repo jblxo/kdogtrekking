@@ -1,0 +1,22 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <% competitions.forEach(function(competition) { %>
+            <div class="col-md-4 col-sm-6">
+                <div class="thumbnail">
+                    <img src="<%= competition.map %>">
+                    <div class="caption">
+                        <h4><%= competition.title %></h4>
+                    </div>
+                    <p>
+                        <a class="btn btn-primary" href="/zavody/<%= competition._id %>">Více</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+</body>
+
+</html>

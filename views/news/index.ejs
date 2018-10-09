@@ -1,0 +1,19 @@
+<% include ../partials/header.ejs %>
+
+<div class="container-full">
+    <% news.forEach(function(news) { %>
+        <div class="thumbnail">
+            <img class="image-responsive" id="showImg" src="<%= news.image %>"> 
+            <div class="caption">
+                <h2><%= news.title %></h2>
+                <% if(news.description) { %>
+                <p><%- news.description.substring(0, 100) %>...</p>
+                <% } else {} %>    
+                <a href="/novinky/<%= news._id %>" class="btn btn-default">Zjistit více</a>
+            </div>
+        </div>
+    <% }); %>
+</div>
+</body>
+
+</html>

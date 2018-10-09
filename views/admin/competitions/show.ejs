@@ -1,0 +1,21 @@
+<% include ../../partials/admin %>
+
+<div class="container-full">
+    <div class="thumbnail">
+        <img src="<%= competition.map %>">
+        <div class="caption">
+            <h2 class='competition-title'><%= competition.title %></h2>
+            <h4><%= competition.location %></h4>
+            <form class="deleteForm" action="/admin/zavody/<%= competition.id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Odstranit</button>
+            </form>
+            <a href='/admin/zavody/<%= competition._id %>/upravit' class='btn btn-warning btn-xs'>Upravit</a>
+            <a href='/admin/zavody/<%= competition._id %>/prihlasky' class='btn btn-default btn-xs'>Přihlášky</a>
+            <p><%- competition.description %></p>
+        </div>
+    </div>
+    <a href="/admin/zavody" class="btn btn-primary back">Zpět</a>
+
+    </body>
+    
+    </html>

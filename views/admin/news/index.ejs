@@ -1,0 +1,39 @@
+<% include ../../partials/admin %>
+<div class="container">
+    <a href="/admin/novinky/nove" class="btn btn-lg btn-success">Přidat nový příspěvek</a>
+    <table id="myTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titulek</th>
+                <th>Popis</th>
+                <th>Vytvořeno</th>
+                <th>Zjistit více</th>
+                <th>Upravit</th>
+                <th>Odstranit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% news.forEach(function(news) { %>
+                <tr>
+                    <td><%= news.title %></td>
+                    <% if(news.description) { %>
+                        <td><%- news.description.substring(0, 100) %>...</td>
+                    <% } else { %>
+                        <td></td>
+                        <% } %>   
+                    <td><%= news.createdAt.toLocaleString() %></td>
+                    <td><a href="/admin/novinky/<%= news._id %>" class="btn btn-default">Zjistit více</a></td>
+                    <td><a class="btn btn-warning" href="/admin/novinky/<%= news._id %>/upravit">Upravit</a></td>
+                    <td>
+                        <form style="display: inline-block" action="/admin/novinky/<%= news._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Odstranit</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

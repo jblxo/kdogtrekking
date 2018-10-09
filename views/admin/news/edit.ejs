@@ -1,0 +1,36 @@
+<% include ../../partials/header %>
+<div class="container">
+    <h1 id="formHeading">Upravit novinku</h1>
+    <form id="addNewForm" action="/admin/novinky/<%= news._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <lable for="news[title]">Titulek</lable>
+            <input class="form-control" type="text" name="news[title]" value="<%= news.title %>">
+        </div>
+        <div class="form-group">
+            <lable for="news[image]">Obrazek</lable>
+            <input class='form-control' type="text" name="news[image]" value="<%= news.image %>">
+        </div>
+        <div class="form-group">
+            <lable for="description">Popis</lable>
+            <input type='hidden' id='hidden' name="description">
+            <div id='editor'><%- news.description %></div>
+        </div>
+        <button onclick="return populate()" class="btn btn-primary">Odeslat</button>
+    </form>
+    <a href="/admin/novinky" class="btn btn-default">Zpet</a>
+
+    <script src="/lib/trumbowyg/trumbowyg.min.js"></script>
+
+    <script>
+        $('#editor').trumbowyg();
+
+        function populate() {
+            var data = document.querySelector('#editor').innerHTML;
+
+            document.querySelector('#hidden').value = data;
+        }
+    </script>
+</div>
+</body>
+
+</html>

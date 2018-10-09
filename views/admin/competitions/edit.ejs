@@ -1,0 +1,83 @@
+<% include ../../partials/admin %>
+<div class="container-full">
+    <h1 id="formHeading">Upravit závod</h1>
+    <form id="addNewForm" action="/admin/zavody/<%= competition._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <lable for="competition[title]">Název</lable>
+            <input class="form-control" type="text" name="competition[title]" placeholder="nazev" value='<%= competition.title %>'>
+        </div>
+        <div class="form-group">
+            <lable for="competition[location]">Místo</lable>
+            <input class="form-control" type="text" name="competition[location]" placeholder="misto" value="<%= competition.location %>">
+        </div>
+        <div class="form-group">
+            <lable for="competition[map]">Obrázek</lable>
+            <input class="form-control" type="text" name="competition[map]" placeholder="URL obrazku mapy" value='<%= competition.map %>'>
+        </div>
+        <div class='form-group'>
+            Kategorie
+            <% categories.forEach(function(category) { %>
+                <div class="checkbox">
+                <label>
+                    <% if(competition.categories.indexOf(category.name) >= 0) { %>
+                    <input type="checkbox" name="category" value="<%= category.name %>" checked>
+                    <% } else { %>
+                        <input type="checkbox" name="category" value="<%= category.name %>">
+                    <% } %>
+                    <%= category.name %>
+                </label>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class='form-group'>
+            Aktivita
+            <div class='radio'>
+                <label>
+                    <% if(competition.isActive == true) { %>
+                        <input type="radio" name="competition[isActive]" id="active" value="true" checked>
+                    <% } else { %>
+                        <input type="radio" name="competition[isActive]" id="active" value="true">
+                    <% } %>
+                    Aktivní
+                </label>
+            </div>
+
+            <div class='radio'>
+                <label>
+                    <% if(competition.isActive == false) { %>
+                        <input type="radio" name="competition[isActive]" id="nonactive" value="false" checked>
+                    <% } else { %>
+                        <input type="radio" name="competition[isActive]" id="nonactive" value="false">
+                    <% } %>
+                    Neaktivní
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <lable for="description">Popis</lable>
+            <input id='hidden' type='hidden' name='description'>
+            <div id='editor'>
+                <%- competition.description %>
+            </div>
+        </div>
+        <button onclick="return populate()" class="btn btn-primary">Odeslat</button>
+    </form>
+    <a href="/admin/zavody" class="btn btn-default">Zpet</a>
+
+    <script src="/lib/trumbowyg/trumbowyg.min.js"></script>
+
+    <script>
+        $('#editor').trumbowyg();
+
+        function populate() {
+            var data = document.querySelector('#editor').innerHTML;
+
+            document.querySelector('#hidden').value = data;
+        }
+    </script>
+    </body>
+    
+    </html>
+

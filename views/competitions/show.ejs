@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+<div class="container-full">
+    <div class="thumbnail">
+        <img src="<%= competition.map %>">
+        <div class="caption">
+            <h2 class='competition-title'><%= competition.title %></h2>
+            <h4><%= competition.location %></h4>
+            <a href='/zavody/<%= competition._id %>/prihlasky' class='btn btn-default btn-xs'>Přihlášky</a>
+            <p><%- competition.description %></p>
+        </div>
+    </div>
+    <a href="/zavody" class="btn btn-primary back">Zpet</a>
+    </body>
+    
+    </html>
