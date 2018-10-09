@@ -275,7 +275,7 @@ footer {
 }
 
 #noCompetition {
-  background: url('../img/sadDog.JPG');
+  background: url('./img/sadDog.JPG');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
