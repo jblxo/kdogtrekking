@@ -1,14 +1,27 @@
 <% include ./partials/header.ejs %>
+<% if (competition != null) { %>
 <div class='container-full'>
     <div class='thumbnail'>
         <img src='<%= competition.map %>'>
         <div class='caption'>
-            <h2 class='competition-title'><%= competition.title %></h2>
-            <p><%- competition.description %></p>
+            <h2 class='competition-title'>
+                <%= competition.title %>
+            </h2>
+            <p>
+                <%- competition.description %>
+            </p>
         </div>
     </div>
     <a href="/novinky" class="btn btn-primary back">Zpět</a>
 </div>
+<% } else { %>
+<div class='container-full'>
+    <br>
+    <br>
+    <br>
+    <h2 class='text-center'>Zatím neprobíhá žádný závod</h2>
+</div>
+<%} %>
 </body>
 
 </html>

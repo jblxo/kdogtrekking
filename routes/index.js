@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 
 router.get('/propozice', function(req, res) {
   Competition.findOne({ isActive: true }, function(err, activeComp) {
-    if (err || !activeComp) {
+    if (err) {
       res.redirect('/');
     } else {
       res.render('propozice', { competition: activeComp });
