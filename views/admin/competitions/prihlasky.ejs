@@ -1,6 +1,6 @@
 <% include ../../partials/admin %>
-  <div class="container">
-    <%
+<div class="container-full">
+  <%
 var arr = [];
 
 competition.categories.forEach(function(category) {
@@ -20,149 +20,154 @@ competition.competitors.forEach(function(comp) {
 
 %>
 
-      <% if(competition.competitors.length > 0){ %>
+  <% if(competition.competitors.length > 0){ %>
 
-        <br> Řadit podle
-        <form action='/zavody/<%= competition._id %>/prihlasky' method='get'>
-          <select id='orderBy' name='order'>
-            <option value='place'>Umístění</option>
-            <option value='firstName'>Jméno</option>
-            <option value='lastName'>Příjmení</option>
-            <option value='isRegistered'>Registrace</option>
-          </select>
-          <br>
-          <br>
-          <select id='field' name='field'>
-            <option value=''></option>
-            <option id='place' value='place'>Místo</option>
-            <option id='time' value='time'>Čas</option>
-          </select>
-          <br>
-          <div id='append'>
+  <br> Řadit podle
+  <form action='/zavody/<%= competition._id %>/prihlasky' method='get'>
+    <select id='orderBy' name='order'>
+      <option value='place'>Umístění</option>
+      <option value='firstName'>Jméno</option>
+      <option value='lastName'>Příjmení</option>
+      <option value='isRegistered'>Registrace</option>
+    </select>
+    <br>
+    <br>
+    <select id='field' name='field'>
+      <option value=''></option>
+      <option id='place' value='place'>Místo</option>
+      <option id='time' value='time'>Čas</option>
+    </select>
+    <br>
+    <div id='append'>
 
-          </div>
-          <br>
+    </div>
+    <br>
 
-          <br> Vše
-          <input checked type='radio' name='where' value='all'>
-          <br> Zaplaceno
-          <input type='radio' name='where' value='true'>
-          <br> Nezaplaceno
-          <input type='radio' name='where' value='false'>
-          <br>
-          <button class='btn btn-default'>Filtrovat</button>
-        </form>
+    <br> Vše
+    <input checked type='radio' name='where' value='all'>
+    <br> Zaplaceno
+    <input type='radio' name='where' value='true'>
+    <br> Nezaplaceno
+    <input type='radio' name='where' value='false'>
+    <br>
+    <button class='btn btn-default'>Filtrovat</button>
+  </form>
 
-        <% arr.forEach(function(e) { %>
-          <% if(e.competitors.length > 0) { %>
-            <div class='table-wrap'>
-              <h3>
-                <%= e.name %>
-              </h3>
-              <table id="myTable" class="table">
-                <thead>
-                  <tr>
-                    <th>Jméno</th>
-                    <th>Příjmení</th>
-                    <th>Kategorie</th>
-                    <th>Umístění</th>
-                    <th>Čas</th>
-                    <th>Jména psů</th>
-                    <th>Rasy psů</th>
-                    <th>Upravit</th>
-                    <th>Odstranit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% e.competitors.forEach(function(comp) { %>
-                    <% if(comp.isRegistered) { %>
-                      <tr class='zaplaceno'>
-                        <td>
-                          <%= comp.firstName %>
-                        </td>
-                        <td>
-                          <%= comp.lastName %>
-                        </td>
-                        <td>
-                          <%= comp.category %>
-                        </td>
-                        <td>
-                          <%= comp.place %>
-                        </td>
-                        <td>
-                          <%= (comp.time.getHours()<10? "0" : "") + comp.time.getHours() + ":" + (comp.time.getMinutes()<10? "0" : "") + comp.time.getMinutes() + ":" + (comp.time.getSeconds()<10? "0" : "") + comp.time.getSeconds() %>
-                        </td>
-                        <td>
-                          <%= comp.dogName %>
-                        </td>
-                        <td>
-                          <%= comp.dogRace %>
-                        </td>
-                        <td>
-                          <a class='btn btn-warning' href='/admin/zavody/<%= competition._id%>/prihlasky/<%= comp._id %>'>Upravit</a>
-                        </td>
-                        <td>
-                          <form class="deleteForm" action="/admin/zavody/<%= competition.id %>/prihlasky/<%= comp._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Odstranit</button>
-                          </form>
-                        </td>
-                      </tr>
-                      <% } else { %>
-                        <tr class='nezaplaceno'>
-                          <td>
-                            <%= comp.firstName %>
-                          </td>
-                          <td>
-                            <%= comp.lastName %>
-                          </td>
-                          <td>
-                            <%= comp.category %>
-                          </td>
-                          <td>
-                            <%= comp.place %>
-                          </td>
-                          <td>
-                            <%= (comp.time.getHours()<10? "0" : "") + comp.time.getHours() + ":" + (comp.time.getMinutes()<10? "0" : "") + comp.time.getMinutes() + ":" + (comp.time.getSeconds()<10? "0" : "") + comp.time.getSeconds() %>
-                          </td>
-                          <td>
-                            <%= comp.dogName %>
-                          </td>
-                          <td>
-                            <%= comp.dogRace %>
-                          </td>
-                          <td>
-                            <a class='btn btn-warning' href='/admin/zavody/<%= competition._id%>/prihlasky/<%= comp._id %>'>Upravit</a>
-                          </td>
-                          <td>
-                            <form class="deleteForm" action="/admin/zavody/<%= competition.id %>/prihlasky/<%= comp._id %>?_method=DELETE" method="POST">
-                              <button class="btn btn-danger">Odstranit</button>
-                            </form>
-                          </td>
-                        </tr>
-                        <% } %>
-                          <% }); %>
-                </tbody>
-              </table>
-            </div>
-            <% } %>
-              <% }); %>
-                <% } else { %>
-                  <h2 class='text-center'>Žádné výsledky nenalezeny</h2>
-                  <% } %>
+  <% arr.forEach(function(e) { %>
+  <% if(e.competitors.length > 0) { %>
+  <div class='table-wrap'>
+    <h3>
+      <%= e.name %>
+    </h3>
+    <table id="myTable" class="table">
+      <thead>
+        <tr>
+          <th>Jméno</th>
+          <th>Příjmení</th>
+          <th>Kategorie</th>
+          <th>Umístění</th>
+          <th>Čas</th>
+          <th>Jména psů</th>
+          <th>Rasy psů</th>
+          <th>Upravit</th>
+          <th>Odstranit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% e.competitors.forEach(function(comp) { %>
+        <% if(comp.isRegistered) { %>
+        <tr class='zaplaceno'>
+          <td>
+            <%= comp.firstName %>
+          </td>
+          <td>
+            <%= comp.lastName %>
+          </td>
+          <td>
+            <%= comp.category %>
+          </td>
+          <td>
+            <%= comp.place %>
+          </td>
+          <td>
+            <%= (comp.time.getHours()<10? "0" : "") + comp.time.getHours() + ":" + (comp.time.getMinutes()<10? "0" : "") + comp.time.getMinutes() + ":" + (comp.time.getSeconds()<10? "0" : "") + comp.time.getSeconds() %>
+          </td>
+          <td>
+            <%= comp.dogName %>
+          </td>
+          <td>
+            <%= comp.dogRace %>
+          </td>
+          <td>
+            <a class='btn btn-warning' href='/admin/zavody/<%= competition._id%>/prihlasky/<%= comp._id %>'>Upravit</a>
+          </td>
+          <td>
+            <form class="deleteForm" action="/admin/zavody/<%= competition.id %>/prihlasky/<%= comp._id %>?_method=DELETE"
+              method="POST">
+              <button class="btn btn-danger">Odstranit</button>
+            </form>
+          </td>
+        </tr>
+        <% } else { %>
+        <tr class='nezaplaceno'>
+          <td>
+            <%= comp.firstName %>
+          </td>
+          <td>
+            <%= comp.lastName %>
+          </td>
+          <td>
+            <%= comp.category %>
+          </td>
+          <td>
+            <%= comp.place %>
+          </td>
+          <td>
+            <%= (comp.time.getHours()<10? "0" : "") + comp.time.getHours() + ":" + (comp.time.getMinutes()<10? "0" : "") + comp.time.getMinutes() + ":" + (comp.time.getSeconds()<10? "0" : "") + comp.time.getSeconds() %>
+          </td>
+          <td>
+            <%= comp.dogName %>
+          </td>
+          <td>
+            <%= comp.dogRace %>
+          </td>
+          <td>
+            <a class='btn btn-warning' href='/admin/zavody/<%= competition._id%>/prihlasky/<%= comp._id %>'>Upravit</a>
+          </td>
+          <td>
+            <form class="deleteForm" action="/admin/zavody/<%= competition.id %>/prihlasky/<%= comp._id %>?_method=DELETE"
+              method="POST">
+              <button class="btn btn-danger">Odstranit</button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+        <% }); %>
+      </tbody>
+    </table>
   </div>
-  <script>
-    $('#field').change(function () {
-      $('#append').html(' ');
+  <% } %>
+  <% }); %>
+  <% } else { %>
+  <br>
+  <br>
+  <br>
+  <h2 class='text-center'>Zatím neprobíhá žádný závod</h2>
+  <% } %>
+</div>
+<script>
+  $('#field').change(function () {
+    $('#append').html(' ');
 
-      if ($('#place').is(':selected')) {
-        $('#append').append("Umístil se do  <input type='number' min='1' value='1' name='size'>");
-      }
+    if ($('#place').is(':selected')) {
+      $('#append').append("Umístil se do  <input type='number' min='1' value='1' name='size'>");
+    }
 
-      if ($('#time').is(':selected')) {
-        $('#append').append("Doběhl pod  <input type='time' step='1' name='time' value='01:05:10'>");
-      }
-    });
-  </script>
-  </body>
+    if ($('#time').is(':selected')) {
+      $('#append').append("Doběhl pod  <input type='time' step='1' name='time' value='01:05:10'>");
+    }
+  });
+</script>
+</body>
 
-  </html>
+</html>
